@@ -41,6 +41,9 @@ export default function CateringPage() {
           <div className="w-12 h-0.5 bg-white mx-auto mb-6" />
           <h1 className="text-4xl md:text-5xl font-bold mb-3">Catering To Go</h1>
           <p className="text-lg text-stone-200">Fresh, farm-to-able catering<br />for your next gathering.</p>
+          <a href="#inquiry" className="inline-block mt-8 bg-white text-[#0F6397] px-6 py-3 font-semibold hover:bg-stone-100">
+            INQUIRE
+          </a>
         </div>
       </section>
 
