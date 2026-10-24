@@ -75,7 +75,7 @@ export default function CateringPage() {
         </FadeOnScroll>
 
         {/* Breakfast */}
-        <section id="breakfast" className="mb-16 scroll-mt-40">
+        <section id="breakfast" className="mb-16 scroll-mt-[220px]">
           <h2 className="text-2xl md:text-3xl font-bold text-[#0F6397] mb-6 pb-2 border-b border-stone-200">Breakfast</h2>
           <div className="space-y-6">
             <div className="pb-6 border-b border-stone-100">
@@ -103,7 +103,7 @@ export default function CateringPage() {
         </section>
 
         {/* Lunch */}
-        <section id="lunch" className="mb-16 scroll-mt-40">
+        <section id="lunch" className="mb-16 scroll-mt-[220px]">
           <h2 className="text-2xl md:text-3xl font-bold text-[#0F6397] mb-6 pb-2 border-b border-stone-200">Lunch</h2>
           <div className="space-y-6">
             <div className="pb-6 border-b border-stone-100">
@@ -128,7 +128,7 @@ export default function CateringPage() {
         </section>
 
         {/* Sandwich Trays */}
-        <section id="trays" className="mb-16 scroll-mt-40">
+        <section id="trays" className="mb-16 scroll-mt-[220px]">
           <h2 className="text-2xl md:text-3xl font-bold text-[#0F6397] mb-2">Sandwich Trays & Boxed Lunches</h2>
           <p className="text-stone-600 mb-6">$22.00 per person • Includes bottled water, selected side dish & dessert</p>
           <ul className="space-y-3 text-sm text-stone-700">
@@ -146,7 +146,7 @@ export default function CateringPage() {
         </section>
 
         {/* Platters */}
-        <section id="platters" className="mb-16 scroll-mt-40">
+        <section id="platters" className="mb-16 scroll-mt-[220px]">
           <h2 className="text-2xl md:text-3xl font-bold text-[#0F6397] mb-6 pb-2 border-b border-stone-200">Platters</h2>
           <div className="space-y-6">
             <div className="pb-6 border-b border-stone-100">
@@ -162,7 +162,7 @@ export default function CateringPage() {
         </section>
 
         {/* Salads */}
-        <section id="salads" className="mb-16 scroll-mt-40">
+        <section id="salads" className="mb-16 scroll-mt-[220px]">
           <h2 className="text-2xl md:text-3xl font-bold text-[#0F6397] mb-6 pb-2 border-b border-stone-200">Salads</h2>
           <div className="space-y-6">
             <div className="pb-6 border-b border-stone-100">
@@ -183,7 +183,7 @@ export default function CateringPage() {
         </section>
 
         {/* Hors d'oeuvres */}
-        <section id="hors" className="mb-16 scroll-mt-40">
+        <section id="hors" className="mb-16 scroll-mt-[220px]">
           <h2 className="text-2xl md:text-3xl font-bold text-[#0F6397] mb-6 pb-2 border-b border-stone-200">Assorted Hors d’oeuvres</h2>
           <div className="space-y-6">
             <div className="pb-6 border-b border-stone-100">
@@ -211,7 +211,7 @@ export default function CateringPage() {
         </section>
 
         {/* Sides */}
-        <section id="sides" className="mb-16 scroll-mt-40">
+        <section id="sides" className="mb-16 scroll-mt-[220px]">
           <h2 className="text-2xl md:text-3xl font-bold text-[#0F6397] mb-6 pb-2 border-b border-stone-200">Side Dishes</h2>
           <p className="text-stone-600 mb-4">Additional Sides Available • $4.00 per person</p>
           <ul className="space-y-2 text-sm text-stone-700 list-disc list-inside">
@@ -224,7 +224,7 @@ export default function CateringPage() {
         </section>
 
         {/* Desserts */}
-        <section id="desserts" className="mb-16 scroll-mt-40">
+        <section id="desserts" className="mb-16 scroll-mt-[220px]">
           <h2 className="text-2xl md:text-3xl font-bold text-[#0F6397] mb-6 pb-2 border-b border-stone-200">Dessert Selection</h2>
           <p className="text-stone-600 mb-4">Additional Desserts Available • $4.00 per person</p>
           <ul className="space-y-2 text-sm text-stone-700 list-disc list-inside">
@@ -236,7 +236,7 @@ export default function CateringPage() {
         </section>
 
         {/* Ordering Info */}
-        <section id="ordering" className="mb-16 scroll-mt-40">
+        <section id="ordering" className="mb-16 scroll-mt-[220px]">
           <h2 className="text-2xl md:text-3xl font-bold text-[#0F6397] mb-6 pb-2 border-b border-stone-200">Ordering Information</h2>
           <div className="space-y-4 text-stone-700">
             <p><strong>Barbara Hineline</strong></p>
@@ -262,7 +262,7 @@ export default function CateringPage() {
         </section>
 
         {/* Catering Inquiry Form */}
-        <section id="inquiry" className="scroll-mt-40">
+        <section id="inquiry" className="scroll-mt-[220px]">
           <h2 className="text-2xl md:text-3xl font-bold text-[#0F6397] mb-6 pb-2 border-b border-stone-200">Catering Inquiry</h2>
           <div className="bg-white p-6 md:p-8 border border-stone-200 shadow-sm">
             <CateringInquiryForm />
