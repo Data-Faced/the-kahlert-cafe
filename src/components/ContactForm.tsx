@@ -21,10 +21,31 @@ export default function ContactForm() {
     setError("");
     setStatus("sending");
 
-    // Placeholder — wire to your form handler / email service later
-    await new Promise((r) => setTimeout(r, 600));
-    setStatus("sent");
-    form.reset();
+    try {
+      const res = await fetch("/api/inquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          form: "contact",
+          name: data.get("name"),
+          email,
+          phone,
+          message: data.get("message"),
+          hp_field: data.get("hp_field"),
+        }),
+      });
+      const result = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setStatus("error");
+        setError(typeof result.error === "string" ? result.error : "Something went wrong. Please try again.");
+        return;
+      }
+      setStatus("sent");
+      form.reset();
+    } catch {
+      setStatus("error");
+      setError("Something went wrong. Please try again.");
+    }
   }
 
   if (status === "sent") {
@@ -93,7 +114,12 @@ export default function ContactForm() {
         />
       </div>
 
-      {error && <p className="text-sm text-red-600">{error}</p>}
+            {error && <p className="text-sm text-red-600">{error}</p>}
+
+      <div className="hidden" aria-hidden="true">
+        <label htmlFor="contact-hp">Leave this field blank</label>
+        <input id="contact-hp" name="hp_field" type="text" tabIndex={-1} autoComplete="off" />
+      </div>
 
       <p className="text-xs text-stone-500">
         Name is required. Please provide either an email or phone number so we can follow up.
