@@ -189,7 +189,7 @@ export default function MenuPage() {
           <div className="w-12 h-0.5 bg-white mx-auto mb-6" />
           <h1 className="text-4xl md:text-5xl font-bold mb-3">Menu</h1>
           <p className="text-lg text-stone-200">Fresh, farm-to-able meals<br />made with care.</p>
-          <Link href="/catering" className="inline-block mt-8 bg-white text-[#0F6397] px-6 py-3 font-semibold hover:bg-stone-100">
+          <Link href="/catering" className="inline-block mt-8 border-2 border-white text-white px-6 py-3 font-semibold hover:bg-white/10">
             VIEW CATERING MENU
           </Link>
         </div>
