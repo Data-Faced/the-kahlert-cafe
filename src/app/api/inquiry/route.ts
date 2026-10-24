@@ -91,8 +91,7 @@ export async function POST(request: Request) {
   }
 
   const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.FORM_FROM_EMAIL;
-  if (!apiKey || !from) {
+  if (!apiKey) {
     console.error("Form email is not configured.");
     return NextResponse.json(
       { error: "This form is not ready to send yet. Please call us and we will help." },
@@ -102,7 +101,7 @@ export async function POST(request: Request) {
 
   const lines = form.fields.map((field) => `${field.label}: ${values[field.key] || "—"}`);
   const payload: Record<string, unknown> = {
-    from,
+    from: "The Kahlert Café <hello@mail.thekahlertcafe.com>",
     to: RECIPIENTS,
     subject: form.subject,
     text: lines.join("\n"),
