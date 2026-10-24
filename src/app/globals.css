@@ -19,6 +19,7 @@ body {
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
   width: 100%;
   max-width: 100%;
+  overflow-x: clip;
 }
 
 /* Tasteful fade-in animations */
