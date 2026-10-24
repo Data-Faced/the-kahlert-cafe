@@ -17,7 +17,7 @@ type Field = { key: string; label: string; max: number };
 
 const FORMS: Record<string, { subject: string; fields: Field[] }> = {
   contact: {
-    subject: "Contact Form - TheKahlertCafe.Com",
+    subject: "Contact Form - TheKahlertCafe.com",
     fields: [
       { key: "name", label: "Name", max: 200 },
       { key: "email", label: "Email", max: 200 },
@@ -26,7 +26,7 @@ const FORMS: Record<string, { subject: string; fields: Field[] }> = {
     ],
   },
   catering: {
-    subject: "Catering Form - TheKahlertCafe.Com",
+    subject: "Catering Form - TheKahlertCafe.com",
     fields: [
       { key: "name", label: "Name", max: 200 },
       { key: "email", label: "Email", max: 200 },
