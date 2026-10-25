@@ -93,7 +93,7 @@ async function getToken(hostname: string, clientId: string, clientSecret: string
       clientSecret,
       userAccessType: "TOAST_MACHINE_CLIENT",
     }),
-    next: { revalidate: 3000 },
+    cache: "no-store",
   });
   if (!res.ok) {
     throw new Error(`Toast auth failed: ${res.status}`);
@@ -119,7 +119,7 @@ export async function getToastMenu(): Promise<MenuSection[] | null> {
         Authorization: `Bearer ${token}`,
         "Toast-Restaurant-External-ID": restaurantGuid,
       },
-      next: { revalidate: 900 },
+      cache: "no-store",
     });
     if (!res.ok) {
       throw new Error(`Toast menus failed: ${res.status}`);
