@@ -92,8 +92,7 @@ async function getToken(hostname: string, clientId: string, clientSecret: string
       clientId,
       clientSecret,
       userAccessType: "TOAST_MACHINE_CLIENT",
-    }),
-    cache: "no-store",
+    })
   });
   if (!res.ok) {
     throw new Error(`Toast auth failed: ${res.status}`);
@@ -105,6 +104,10 @@ async function getToken(hostname: string, clientId: string, clientSecret: string
 }
 
 export async function getToastMenu(): Promise<MenuSection[] | null> {
+  "use cache";
+  const { cacheLife } = await import("next/cache");
+  cacheLife("minutes");
+
   const hostname = process.env.TOAST_API_HOSTNAME;
   const clientId = process.env.TOAST_CLIENT_ID;
   const clientSecret = process.env.TOAST_CLIENT_SECRET;
@@ -118,8 +121,7 @@ export async function getToastMenu(): Promise<MenuSection[] | null> {
       headers: {
         Authorization: `Bearer ${token}`,
         "Toast-Restaurant-External-ID": restaurantGuid,
-      },
-      cache: "no-store",
+      }
     });
     if (!res.ok) {
       throw new Error(`Toast menus failed: ${res.status}`);
