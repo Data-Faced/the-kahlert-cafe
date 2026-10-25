@@ -2,12 +2,15 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import MobileNav from "@/components/MobileNav";
+import { getToastMenu, type MenuSection } from "@/lib/toast";
 
 export const metadata: Metadata = {
   title: "Menu",
   description: "View the full menu at The Kahlert Café in Sparks, MD. Fresh, farm-to-able meals including breakfast, lunch, bowls, salads, baked goods, sides, and drinks.",
   robots: { index: false, follow: false },
 };
+
+export const revalidate = 900;
 
 const menuSections = [
   {
@@ -159,7 +162,10 @@ const menuSections = [
   },
 ];
 
-export default function MenuPage() {
+export default async function MenuPage() {
+  const toastSections = await getToastMenu();
+  const sections: MenuSection[] = toastSections && toastSections.length ? toastSections : menuSections;
+
   return (
     <div className="min-h-screen bg-white text-stone-900">
       {/* Header */}
@@ -199,7 +205,7 @@ export default function MenuPage() {
       <div className="sticky top-[100px] z-40 bg-white border-b shadow-sm">
         <div className="container mx-auto px-4 relative">
           <div className="flex gap-1 overflow-x-auto py-3 pr-14 text-sm font-medium scrollbar-none">
-            {menuSections.map((section) => (
+            {sections.map((section) => (
               <a
                 key={section.id}
                 href={`#${section.id}`}
@@ -222,7 +228,7 @@ export default function MenuPage() {
 
       {/* Menu Sections */}
       <div className="container mx-auto px-6 py-10 max-w-4xl">
-        {menuSections.map((section) => (
+        {sections.map((section) => (
           <section key={section.id} id={section.id} className="mb-16 scroll-mt-[220px]">
             <h2 className="text-2xl md:text-3xl font-bold text-[#0F6397] mb-6 pb-2 border-b border-stone-200">
               {section.title}
