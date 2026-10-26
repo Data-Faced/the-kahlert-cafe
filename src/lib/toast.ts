@@ -16,6 +16,21 @@ type ToastMenuItem = {
   description?: string;
   price?: number | null;
   visibility?: string[];
+  pricingStrategy?: string;
+  pricingRules?: { sizeSpecificPricingGuid?: string | null } | null;
+  modifierGroupReferences?: number[];
+};
+
+type ToastModifierOption = {
+  name?: string;
+  price?: number | null;
+  referenceId?: number;
+};
+
+type ToastModifierGroup = {
+  guid?: string;
+  name?: string;
+  modifierOptionReferences?: number[];
 };
 
 type ToastMenuGroup = {
@@ -31,6 +46,8 @@ type ToastMenu = {
 
 type ToastMenusResponse = {
   menus?: ToastMenu[];
+  modifierGroupReferences?: Record<string, ToastModifierGroup>;
+  modifierOptionReferences?: Record<string, ToastModifierOption>;
 };
 
 function slug(value: string) {
@@ -40,38 +57,70 @@ function slug(value: string) {
     .replace(/(^-|-$)/g, "");
 }
 
-function formatPrice(price: number | null | undefined) {
+function formatPrice(price: number | null | undefined, withPlus = false) {
   if (price == null || Number.isNaN(price)) return "";
-  return `$${price.toFixed(2)}`;
+  return `$${price.toFixed(2)}${withPlus ? "+" : ""}`;
 }
 
-function collectItems(group: ToastMenuGroup): MenuItem[] {
+function sizePrices(
+  item: ToastMenuItem,
+  groups: Record<string, ToastModifierGroup>,
+  options: Record<string, ToastModifierOption>
+) {
+  const guid = item.pricingRules?.sizeSpecificPricingGuid;
+  if (!guid) return [];
+  const group = Object.values(groups).find((entry) => entry.guid === guid);
+  if (!group) return [];
+  const prices: number[] = [];
+  for (const ref of group.modifierOptionReferences || []) {
+    const option = options[String(ref)];
+    if (option?.price != null && !Number.isNaN(option.price)) prices.push(option.price);
+  }
+  return prices;
+}
+
+function resolvePrice(
+  item: ToastMenuItem,
+  groups: Record<string, ToastModifierGroup>,
+  options: Record<string, ToastModifierOption>
+) {
+  if (item.price != null && !Number.isNaN(item.price)) return formatPrice(item.price);
+  const prices = sizePrices(item, groups, options);
+  if (!prices.length) return "";
+  const min = Math.min(...prices);
+  const max = Math.max(...prices);
+  return formatPrice(min, max > min);
+}
+
+function collectItems(
+  group: ToastMenuGroup,
+  groups: Record<string, ToastModifierGroup>,
+  options: Record<string, ToastModifierOption>
+): MenuItem[] {
   const items: MenuItem[] = [];
   for (const item of group.menuItems || []) {
     if (!item.name) continue;
-    const visibility = item.visibility || [];
-    if (visibility.length && !visibility.includes("ORDERING_PARTNERS") && !visibility.includes("POS") && !visibility.includes("ALL")) {
-      // still include; Toast visibility values vary
-    }
     items.push({
       name: item.name,
       desc: item.description || undefined,
-      price: formatPrice(item.price),
+      price: resolvePrice(item, groups, options),
     });
   }
   for (const child of group.menuGroups || []) {
-    items.push(...collectItems(child));
+    items.push(...collectItems(child, groups, options));
   }
   return items;
 }
 
 function toSections(data: ToastMenusResponse): MenuSection[] {
+  const groups = data.modifierGroupReferences || {};
+  const options = data.modifierOptionReferences || {};
   const sections: MenuSection[] = [];
   for (const menu of data.menus || []) {
-    const groups = menu.menuGroups || [];
-    if (!groups.length) continue;
-    for (const group of groups) {
-      const items = collectItems(group);
+    const menuGroups = menu.menuGroups || [];
+    if (!menuGroups.length) continue;
+    for (const group of menuGroups) {
+      const items = collectItems(group, groups, options);
       if (!items.length) continue;
       const title = group.name || menu.name || "Menu";
       sections.push({
