@@ -35,11 +35,11 @@ export const metadata: Metadata = {
   authors: [{ name: "The Kahlert Café" }],
   creator: "Sandish Web Solutions",
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
     googleBot: {
-      index: false,
-      follow: false,
+      index: true,
+      follow: true,
     },
   },
   openGraph: {
