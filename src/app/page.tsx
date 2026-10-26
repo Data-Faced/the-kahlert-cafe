@@ -64,7 +64,16 @@ export default function Home() {
         </header>
 
         {/* Hero */}
-        <section className="relative min-h-[80vh] flex items-center text-white" style={{backgroundImage: "url(/tkc-hero-bg.jpeg)", backgroundSize: "cover", backgroundPosition: "center right"}}>
+        <section className="relative min-h-[80vh] flex items-center text-white">
+          <Image
+            src="/tkc-hero-bg.jpeg"
+            alt=""
+            fill
+            priority
+            fetchPriority="high"
+            sizes="100vw"
+            className="object-cover object-right"
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/20" />
           <div className="relative z-10 container mx-auto px-6 md:px-8 lg:px-12 w-full">
             <div className="max-w-xl lg:max-w-2xl relative">
@@ -173,7 +182,14 @@ export default function Home() {
         </section>
 
         {/* Final CTA */}
-        <section className="relative py-20" style={{backgroundImage: "url(/tkc-cta-bg.jpeg)", backgroundSize: "cover", backgroundPosition: "center right"}}>
+        <section className="relative py-20">
+          <Image
+            src="/tkc-cta-bg.jpeg"
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover object-right"
+          />
           <div className="absolute inset-0 bg-black/40" />
           <FadeOnScroll>
             <div className="relative z-10 container mx-auto px-6 md:px-8 lg:px-12 flex justify-start">
