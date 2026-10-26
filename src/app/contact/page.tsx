@@ -8,7 +8,6 @@ import ContactForm from "@/components/ContactForm";
 export const metadata: Metadata = {
   title: "Contact",
   description: "Contact The Kahlert Café in Sparks, MD. Inquire about catering, visit us, or send a message. Open Monday–Friday 8AM–3PM.",
-  robots: { index: false, follow: false },
 };
 
 export default function ContactPage() {
