@@ -8,7 +8,6 @@ import CateringInquiryForm from "@/components/CateringInquiryForm";
 export const metadata: Metadata = {
   title: "Catering",
   description: "Catering to go from The Kahlert Café in Sparks, MD. Breakfast, lunch, sandwich trays, platters, salads, hors d’oeuvres, and more for your event.",
-  robots: { index: false, follow: false },
 };
 
 export default function CateringPage() {
