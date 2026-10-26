@@ -7,7 +7,6 @@ import { getToastMenu, type MenuSection } from "@/lib/toast";
 export const metadata: Metadata = {
   title: "Menu",
   description: "View the full menu at The Kahlert Café in Sparks, MD. Fresh, farm-to-able meals including breakfast, lunch, bowls, salads, baked goods, sides, and drinks.",
-  robots: { index: false, follow: false },
 };
 
 const menuSections = [
