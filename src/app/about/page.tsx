@@ -7,7 +7,6 @@ import FadeOnScroll from "@/components/FadeOnScroll";
 export const metadata: Metadata = {
   title: "About",
   description: "Learn about The Kahlert Café — an inclusive farm-to-able community café in Sparks, MD providing employment and training for adults with intellectual and developmental disabilities.",
-  robots: { index: false, follow: false },
 };
 
 const teamMembers = [
