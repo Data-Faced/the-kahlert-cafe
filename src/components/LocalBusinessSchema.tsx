@@ -5,8 +5,8 @@ export default function LocalBusinessSchema() {
     name: "The Kahlert Café",
     description:
       "Inclusive farm-to-able community café in Sparks, Maryland providing meaningful employment and culinary training for adults with intellectual and developmental disabilities. Fresh, locally sourced food and specialty coffee.",
-    url: "https://staging.thekahlertcafe.com",
-    image: "https://staging.thekahlertcafe.com/tkc-web-preview.png",
+    url: "https://thekahlertcafe.com",
+    image: "https://thekahlertcafe.com/tkc-web-preview.png",
     telephone: "+14107853274",
     address: {
       "@type": "PostalAddress",
