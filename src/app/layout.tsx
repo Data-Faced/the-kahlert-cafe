@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://staging.thekahlertcafe.com"),
+  metadataBase: new URL("https://thekahlertcafe.com"),
   title: {
     default: "The Kahlert Café | Inclusive Farm-to-Able Café in Sparks, MD",
     template: "%s | The Kahlert Café",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     title: "The Kahlert Café | Inclusive Farm-to-Able Café in Sparks, MD",
     description:
       "Inclusive farm-to-able community café in Sparks, Maryland. Fresh, locally sourced food and specialty coffee with purpose.",
-    url: "https://staging.thekahlertcafe.com",
+    url: "https://thekahlertcafe.com",
     siteName: "The Kahlert Café",
     images: [
       {
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     images: ["/tkc-web-preview.png"],
   },
   alternates: {
-    canonical: "https://staging.thekahlertcafe.com",
+    canonical: "https://thekahlertcafe.com",
   },
 };
 
