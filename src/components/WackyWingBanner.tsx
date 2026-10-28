@@ -58,8 +58,8 @@ export default function WackyWingBanner({
 
   // Full homepage banner (Wednesdays only) — collapsible
   return (
-    <section className="relative overflow-hidden bg-red-800 text-white transition-all duration-500 ease-in-out">
-      <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-yellow-300 via-transparent to-transparent" />
+    <section className="relative bg-red-800 text-white transition-all duration-500 ease-in-out">
+      <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-yellow-300 via-transparent to-transparent pointer-events-none" />
 
       {collapsed ? (
         // Minimal one-line version
@@ -77,12 +77,6 @@ export default function WackyWingBanner({
       ) : (
         // Full expanded version
         <div className="relative container mx-auto px-6 md:px-8 py-10 md:py-14">
-          <button
-            onClick={() => setCollapsed(true)}
-            className="absolute top-3 right-3 md:top-4 md:right-4 text-white/80 hover:text-white text-sm underline underline-offset-2 transition-colors"
-          >
-            Hide
-          </button>
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="text-center md:text-left">
               <div className="inline-block bg-yellow-400 text-red-900 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-4">
@@ -127,6 +121,17 @@ export default function WackyWingBanner({
               />
             </div>
           </div>
+
+          {/* Hide button centered on the bottom borderline */}
+          <button
+            onClick={() => setCollapsed(true)}
+            className="absolute left-1/2 -translate-x-1/2 bottom-0 translate-y-1/2 bg-white text-red-800 text-sm font-medium px-4 py-1.5 rounded-full shadow-md hover:shadow-lg hover:bg-stone-50 transition-all flex items-center gap-1.5 border border-stone-200"
+          >
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
+            </svg>
+            Hide
+          </button>
         </div>
       )}
     </section>
