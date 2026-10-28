@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 
 export default function WackyWingBanner({ variant = "full" }: { variant?: "full" | "menu" }) {
   const [isWednesday, setIsWednesday] = useState(false);
@@ -13,7 +12,11 @@ export default function WackyWingBanner({ variant = "full" }: { variant?: "full"
   }, []);
 
   if (!mounted) {
-    // Avoid hydration mismatch; render nothing until client
+    return null;
+  }
+
+  // Full homepage banner only on Wednesdays
+  if (variant === "full" && !isWednesday) {
     return null;
   }
 
@@ -42,7 +45,7 @@ export default function WackyWingBanner({ variant = "full" }: { variant?: "full"
     );
   }
 
-  // Full homepage banner — only shown on Wednesdays by the parent
+  // Full homepage banner (Wednesdays only)
   return (
     <section className="relative overflow-hidden bg-red-800 text-white py-10 md:py-14">
       <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-yellow-300 via-transparent to-transparent" />
