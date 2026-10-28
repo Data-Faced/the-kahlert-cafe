@@ -186,8 +186,8 @@ export default async function MenuPage() {
         </div>
       </header>
 
-      {/* Small Wacky Wing banner — every day, not sticky */}
-      <WackyWingBanner variant="menu" />
+      {/* Banner at top — only on Wednesdays */}
+      <WackyWingBanner variant="menu" position="top" />
 
       {/* Hero */}
       <section className="relative py-16 md:py-20 text-white" style={{backgroundImage: "url(/tkc-cta-bg.jpeg)", backgroundSize: "cover", backgroundPosition: "center"}}>
@@ -226,6 +226,9 @@ export default async function MenuPage() {
           </div>
         </div>
       </div>
+
+      {/* Banner under category nav — only on non-Wednesdays */}
+      <WackyWingBanner variant="menu" position="afterNav" />
 
       {/* Menu Sections */}
       <div className="container mx-auto px-6 py-10 max-w-4xl">
