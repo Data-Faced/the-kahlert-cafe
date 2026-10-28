@@ -2,6 +2,25 @@
 
 import { useEffect, useState } from "react";
 
+function smoothScrollToTop(duration = 900) {
+  const start = window.scrollY;
+  if (start === 0) return;
+  const startTime = performance.now();
+
+  const easeInOutCubic = (t: number) =>
+    t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+  const step = (now: number) => {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = easeInOutCubic(progress);
+    window.scrollTo(0, start * (1 - eased));
+    if (progress < 1) requestAnimationFrame(step);
+  };
+
+  requestAnimationFrame(step);
+}
+
 export default function WackyWingBanner({
   variant = "full",
   position = "top",
@@ -58,8 +77,8 @@ export default function WackyWingBanner({
 
   const handleHide = () => {
     setCollapsed(true);
-    // Smoothly scroll to top so the collapsed banner stays in view
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // Gentle eased scroll back to top
+    smoothScrollToTop(900);
   };
 
   // Full homepage banner (Wednesdays only) — collapsible
