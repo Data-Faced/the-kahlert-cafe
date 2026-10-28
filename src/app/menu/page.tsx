@@ -175,10 +175,15 @@ export default async function MenuPage() {
   const toastSections = await getToastMenu();
   let sections: MenuSection[] = toastSections && toastSections.length ? toastSections : menuSections;
 
-  // Ensure Specials section exists with Wings
-  const hasSpecials = sections.some((s) => s.id === "specials");
-  if (!hasSpecials) {
+  // Always ensure a Specials section exists with the Wings item
+  const specialsIndex = sections.findIndex((s) => s.id === "specials");
+  if (specialsIndex === -1) {
     sections = [{ id: "specials", title: "Specials", items: [wingsItem] }, ...sections];
+  } else {
+    const specials = sections[specialsIndex];
+    if (!specials.items.some((item) => item.name === "Wings")) {
+      specials.items = [wingsItem, ...specials.items];
+    }
   }
 
   return (
@@ -255,8 +260,8 @@ export default async function MenuPage() {
               {section.title}
             </h2>
             <div className="space-y-6">
-              {section.items.map((item) => (
-                <div key={item.name} className={`flex justify-between gap-4 pb-6 border-b border-stone-100 last:border-0 ${item.name === 'Wings' ? 'bg-yellow-50 -mx-4 px-4 py-4 rounded-lg' : ''}`}>
+              {section.items.map((item, idx) => (
+                <div key={`${section.id}-${item.name}-${idx}`} className={`flex justify-between gap-4 pb-6 border-b border-stone-100 last:border-0 ${item.name === 'Wings' ? 'bg-yellow-50 -mx-4 px-4 py-4 rounded-lg' : ''}`}>
                   <div className="flex-1">
                     <h3 className="font-semibold text-stone-900">{item.name} {item.name === 'Wings' && <span className="ml-2 text-xs bg-red-600 text-white px-2 py-0.5 rounded-full">WACKY WING WEDNESDAY</span>}</h3>
                     {item.desc && <p className="text-sm text-stone-600 mt-1">{item.desc}</p>}
