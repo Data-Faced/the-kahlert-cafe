@@ -2,7 +2,13 @@
 
 import { useEffect, useState } from "react";
 
-export default function WackyWingBanner({ variant = "full" }: { variant?: "full" | "menu" }) {
+export default function WackyWingBanner({
+  variant = "full",
+  position = "top",
+}: {
+  variant?: "full" | "menu";
+  position?: "top" | "afterNav";
+}) {
   const [isWednesday, setIsWednesday] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -21,6 +27,10 @@ export default function WackyWingBanner({ variant = "full" }: { variant?: "full"
   }
 
   if (variant === "menu") {
+    // On Wednesdays show only at top; on other days show only after the category nav
+    if (position === "top" && !isWednesday) return null;
+    if (position === "afterNav" && isWednesday) return null;
+
     return (
       <div className="bg-red-700 text-white py-3 px-4 text-center">
         <div className="container mx-auto">
