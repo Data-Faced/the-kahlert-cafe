@@ -64,12 +64,11 @@ export default function WackyWingBanner({
     }
 
     const fullHeight = el.getBoundingClientRect().height;
-    const minimalHeight = 52; // approx one-line bar
+    const minimalHeight = 52;
     const delta = Math.max(0, fullHeight - minimalHeight);
 
     setCollapsed(true);
 
-    // Compensate scroll so content below stays in the same place on screen
     if (delta > 0) {
       window.scrollBy(0, -delta);
     }
@@ -80,7 +79,6 @@ export default function WackyWingBanner({
     const before = el?.getBoundingClientRect().height ?? 52;
     setCollapsed(false);
 
-    // After expand, adjust scroll so the user doesn't get pushed down
     requestAnimationFrame(() => {
       const after = sectionRef.current?.getBoundingClientRect().height ?? before;
       const delta = after - before;
@@ -91,15 +89,14 @@ export default function WackyWingBanner({
   return (
     <section
       ref={sectionRef}
-      className="relative z-10 bg-red-800 text-white overflow-hidden transition-[height] duration-500 ease-in-out"
+      className="relative z-20 bg-red-800 text-white transition-[height] duration-500 ease-in-out"
       style={{
         height: collapsed ? "52px" : "auto",
       }}
     >
-      <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-yellow-300 via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-yellow-300 via-transparent to-transparent pointer-events-none overflow-hidden" />
 
-      {/* Content is bottom-aligned so the section closes from the top down */}
-      <div className="relative flex flex-col justify-end min-h-full">
+      <div className="relative flex flex-col justify-end min-h-full overflow-hidden">
         {collapsed ? (
           <div className="container mx-auto px-4 py-3 flex items-center justify-between gap-4">
             <span className="font-semibold text-sm md:text-base">
@@ -158,19 +155,22 @@ export default function WackyWingBanner({
                 />
               </div>
             </div>
-
-            <button
-              onClick={handleHide}
-              className="absolute z-20 left-1/2 -translate-x-1/2 bottom-0 translate-y-1/2 bg-white text-red-800 text-sm font-medium px-4 py-1.5 rounded-full shadow-md hover:shadow-lg hover:bg-stone-50 transition-all flex items-center gap-1.5 border border-stone-200"
-            >
-              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
-              </svg>
-              Hide
-            </button>
           </div>
         )}
       </div>
+
+      {/* Hide button outside overflow so it can sit on the borderline */}
+      {!collapsed && (
+        <button
+          onClick={handleHide}
+          className="absolute z-30 left-1/2 -translate-x-1/2 bottom-0 translate-y-1/2 bg-white text-red-800 text-sm font-medium px-4 py-1.5 rounded-full shadow-md hover:shadow-lg hover:bg-stone-50 transition-all flex items-center gap-1.5 border border-stone-200"
+        >
+          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
+          </svg>
+          Hide
+        </button>
+      )}
     </section>
   );
 }
