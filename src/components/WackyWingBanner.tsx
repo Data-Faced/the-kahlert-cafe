@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-function smoothScrollToTop(duration = 900) {
+function smoothScrollToTop(duration = 500) {
   const start = window.scrollY;
   if (start === 0) return;
   const startTime = performance.now();
@@ -77,8 +77,8 @@ export default function WackyWingBanner({
 
   const handleHide = () => {
     setCollapsed(true);
-    // Gentle eased scroll back to top
-    smoothScrollToTop(900);
+    // Scroll matches banner transition duration (500ms ease-in-out)
+    smoothScrollToTop(500);
   };
 
   // Full homepage banner (Wednesdays only) — collapsible
