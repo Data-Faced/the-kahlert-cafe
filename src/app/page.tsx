@@ -39,8 +39,6 @@ export default function Home() {
     "/tkc-home-fb-8.jpeg",
   ];
 
-  const isWednesday = new Date().getDay() === 3;
-
   return (
     <>
       <LocalBusinessSchema />
@@ -66,13 +64,13 @@ export default function Home() {
         </header>
 
         {/* Wacky Wing Wednesday Promo */}
-        <section className={`relative overflow-hidden ${isWednesday ? 'bg-red-700' : 'bg-red-800'} text-white py-10 md:py-14`}>
+        <section className="relative overflow-hidden bg-red-800 text-white py-10 md:py-14">
           <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-yellow-300 via-transparent to-transparent" />
           <div className="relative container mx-auto px-6 md:px-8">
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div className="text-center md:text-left">
                 <div className="inline-block bg-yellow-400 text-red-900 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-4">
-                  {isWednesday ? "Today Only!" : "Every Wednesday"}
+                  Every Wednesday
                 </div>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 leading-tight">
                   It’s Wacky Wing<br className="hidden md:block" /> Wednesday!
