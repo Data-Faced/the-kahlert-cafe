@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import MobileNav from "@/components/MobileNav";
+import WackyWingBanner from "@/components/WackyWingBanner";
 import { getToastMenu, type MenuSection } from "@/lib/toast";
 
 export const metadata: Metadata = {
@@ -184,6 +185,9 @@ export default async function MenuPage() {
           </div>
         </div>
       </header>
+
+      {/* Small Wacky Wing banner — every day, not sticky */}
+      <WackyWingBanner variant="menu" />
 
       {/* Hero */}
       <section className="relative py-16 md:py-20 text-white" style={{backgroundImage: "url(/tkc-cta-bg.jpeg)", backgroundSize: "cover", backgroundPosition: "center"}}>
