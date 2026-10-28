@@ -10,7 +10,18 @@ export const metadata: Metadata = {
   description: "View the full menu at The Kahlert Café in Sparks, MD. Fresh, farm-to-able meals including breakfast, lunch, bowls, salads, baked goods, sides, and drinks.",
 };
 
-const menuSections = [
+const wingsItem = {
+  name: "Wings",
+  desc: "Crispy wings tossed in your choice of sauce, served with celery sticks, blue cheese or ranch; gluten free option available. Wacky Wing Wednesday special: $1 per wing (min 6, limit 12) every Wednesday! Secret Buffalo sauce + BBQ, Old Bay, Garlic Parm, Hot Honey Sriracha.",
+  price: "Wed: $1 | $12.00",
+};
+
+const menuSections: MenuSection[] = [
+  {
+    id: "specials",
+    title: "Specials",
+    items: [wingsItem],
+  },
   {
     id: "breakfast",
     title: "Breakfast",
@@ -51,7 +62,7 @@ const menuSections = [
       { name: "Ham & Brie", desc: "Ham, brie, apples, arugula and apricot dijon on Kneads hoagie roll", price: "$13.00" },
       { name: "Kahlert Crab Club", desc: "Crabcake, Bacon, Tomato, Arugula, & Caper Aioli on Ciabatta", price: "$18.00" },
       { name: "Ham & Brie on Baguette", desc: "Ham and brie with apricot dijon on a fresh baguette", price: "$11.00" },
-      { name: "Wings", desc: "Crispy wings tossed in your choice of sauce, served with celery sticks, blue cheese or ranch; gluten free option available. Wacky Wing Wednesday special: $1 per wing (min 6, limit 12) every Wednesday! Secret Buffalo sauce + BBQ, Old Bay, Garlic Parm, Hot Honey Sriracha.", price: "Wed: $1 | $12.00" },
+      wingsItem,
       { name: "Grilled Cheese & Tomato Bisque", desc: "Classic grilled cheese served alongside creamy tomato bisque", price: "$12.00" },
       { name: "Meatball Sub", desc: "Hearty meatballs with fresh marinara and mozzarella on a Kneads Bakery fresh baked bread, toasted to perfection.", price: "$14.00" },
       { name: "Chili", desc: "Beef and Bean chili, garnished with shredded cheddar, jalapeno, & sour cream", price: "$8.00" },
@@ -162,7 +173,13 @@ const menuSections = [
 
 export default async function MenuPage() {
   const toastSections = await getToastMenu();
-  const sections: MenuSection[] = toastSections && toastSections.length ? toastSections : menuSections;
+  let sections: MenuSection[] = toastSections && toastSections.length ? toastSections : menuSections;
+
+  // Ensure Specials section exists with Wings
+  const hasSpecials = sections.some((s) => s.id === "specials");
+  if (!hasSpecials) {
+    sections = [{ id: "specials", title: "Specials", items: [wingsItem] }, ...sections];
+  }
 
   return (
     <div className="min-h-screen bg-white text-stone-900">
