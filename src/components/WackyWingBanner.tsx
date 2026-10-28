@@ -56,6 +56,12 @@ export default function WackyWingBanner({
     );
   }
 
+  const handleHide = () => {
+    setCollapsed(true);
+    // Smoothly scroll to top so the collapsed banner stays in view
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   // Full homepage banner (Wednesdays only) — collapsible
   return (
     <section className="relative z-10 bg-red-800 text-white transition-all duration-500 ease-in-out">
@@ -124,7 +130,7 @@ export default function WackyWingBanner({
 
           {/* Hide button centered on the bottom borderline */}
           <button
-            onClick={() => setCollapsed(true)}
+            onClick={handleHide}
             className="absolute z-20 left-1/2 -translate-x-1/2 bottom-0 translate-y-1/2 bg-white text-red-800 text-sm font-medium px-4 py-1.5 rounded-full shadow-md hover:shadow-lg hover:bg-stone-50 transition-all flex items-center gap-1.5 border border-stone-200"
           >
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
