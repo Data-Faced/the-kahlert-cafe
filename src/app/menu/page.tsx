@@ -50,7 +50,7 @@ const menuSections = [
       { name: "Ham & Brie", desc: "Ham, brie, apples, arugula and apricot dijon on Kneads hoagie roll", price: "$13.00" },
       { name: "Kahlert Crab Club", desc: "Crabcake, Bacon, Tomato, Arugula, & Caper Aioli on Ciabatta", price: "$18.00" },
       { name: "Ham & Brie on Baguette", desc: "Ham and brie with apricot dijon on a fresh baguette", price: "$11.00" },
-      { name: "Wings", desc: "Crispy wings tossed in your choice of sauce, served with celery sticks, blue cheese or ranch; gluten free option available", price: "$12.00" },
+      { name: "Wings", desc: "Crispy wings tossed in your choice of sauce, served with celery sticks, blue cheese or ranch; gluten free option available. Wacky Wing Wednesday special: $1 per wing (min 6, limit 12) every Wednesday! Secret Buffalo sauce + BBQ, Old Bay, Garlic Parm, Hot Honey Sriracha.", price: "Wed: $1 | $12.00" },
       { name: "Grilled Cheese & Tomato Bisque", desc: "Classic grilled cheese served alongside creamy tomato bisque", price: "$12.00" },
       { name: "Meatball Sub", desc: "Hearty meatballs with fresh marinara and mozzarella on a Kneads Bakery fresh baked bread, toasted to perfection.", price: "$14.00" },
       { name: "Chili", desc: "Beef and Bean chili, garnished with shredded cheddar, jalapeno, & sour cream", price: "$8.00" },
@@ -232,9 +232,9 @@ export default async function MenuPage() {
             </h2>
             <div className="space-y-6">
               {section.items.map((item) => (
-                <div key={item.name} className="flex justify-between gap-4 pb-6 border-b border-stone-100 last:border-0">
+                <div key={item.name} className={`flex justify-between gap-4 pb-6 border-b border-stone-100 last:border-0 ${item.name === 'Wings' ? 'bg-yellow-50 -mx-4 px-4 py-4 rounded-lg' : ''}`}>
                   <div className="flex-1">
-                    <h3 className="font-semibold text-stone-900">{item.name}</h3>
+                    <h3 className="font-semibold text-stone-900">{item.name} {item.name === 'Wings' && <span className="ml-2 text-xs bg-red-600 text-white px-2 py-0.5 rounded-full">WACKY WING WEDNESDAY</span>}</h3>
                     {item.desc && <p className="text-sm text-stone-600 mt-1">{item.desc}</p>}
                   </div>
                   <div className="font-medium text-stone-800 whitespace-nowrap">{item.price}</div>
@@ -255,7 +255,7 @@ export default async function MenuPage() {
       <footer className="bg-stone-900 text-stone-300">
         <div className="container mx-auto px-6 py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
-            <div>
+            <div className="lg:col-span-1">
               <Link href="/">
                 <Image src="/tkc-header-logo.png" alt="The Kahlert Café" width={170} height={55} className="mb-4 brightness-0 invert" />
               </Link>
