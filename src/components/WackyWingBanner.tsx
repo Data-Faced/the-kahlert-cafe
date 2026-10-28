@@ -11,6 +11,7 @@ export default function WackyWingBanner({
 }) {
   const [isWednesday, setIsWednesday] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
 
   useEffect(() => {
     setIsWednesday(new Date().getDay() === 3);
@@ -55,56 +56,79 @@ export default function WackyWingBanner({
     );
   }
 
-  // Full homepage banner (Wednesdays only)
+  // Full homepage banner (Wednesdays only) — collapsible
   return (
-    <section className="relative overflow-hidden bg-red-800 text-white py-10 md:py-14">
+    <section className="relative overflow-hidden bg-red-800 text-white transition-all duration-500 ease-in-out">
       <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-yellow-300 via-transparent to-transparent" />
-      <div className="relative container mx-auto px-6 md:px-8">
-        <div className="grid md:grid-cols-2 gap-8 items-center">
-          <div className="text-center md:text-left">
-            <div className="inline-block bg-yellow-400 text-red-900 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-4">
-              Wednesdays Only
+
+      {collapsed ? (
+        // Minimal one-line version
+        <div className="relative container mx-auto px-4 py-3 flex items-center justify-between gap-4">
+          <span className="font-semibold text-sm md:text-base">
+            Wacky Wing Wednesday — $1 wings
+          </span>
+          <button
+            onClick={() => setCollapsed(false)}
+            className="bg-yellow-400 text-red-900 text-xs md:text-sm font-bold px-4 py-1.5 rounded-full hover:bg-yellow-300 transition-colors whitespace-nowrap"
+          >
+            More Info
+          </button>
+        </div>
+      ) : (
+        // Full expanded version
+        <div className="relative container mx-auto px-6 md:px-8 py-10 md:py-14">
+          <button
+            onClick={() => setCollapsed(true)}
+            className="absolute top-3 right-3 md:top-4 md:right-4 text-white/80 hover:text-white text-sm underline underline-offset-2 transition-colors"
+          >
+            Hide
+          </button>
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div className="text-center md:text-left">
+              <div className="inline-block bg-yellow-400 text-red-900 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-4">
+                Wednesdays Only
+              </div>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 leading-tight">
+                It’s Wacky Wing<br className="hidden md:block" /> Wednesday!
+              </h2>
+              <p className="text-xl md:text-2xl font-semibold text-yellow-300 mb-4">
+                CHICKEN WINGS — $1 a wing!
+              </p>
+              <p className="text-lg mb-2">
+                Secret Hot Wing recipe straight from Buffalo, NY
+              </p>
+              <p className="text-base mb-4 text-yellow-100">
+                Plus BBQ, Old Bay, Garlic Parm & Hot Honey Sriracha
+              </p>
+              <div className="bg-yellow-400 text-red-900 font-bold text-lg px-4 py-2 rounded-full inline-block mb-4">
+                $1 a wing!
+              </div>
+              <p className="text-sm mb-6 opacity-90">
+                Minimum order of 6 · Limit 12 wings per person<br />
+                Great wings, a great price, and an even greater mission.
+              </p>
+              <a
+                href="https://order.toasttab.com/online/kalhert-cafe-53-loveton-circle"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-yellow-400 hover:bg-yellow-300 text-red-900 font-bold px-8 py-3 rounded-full text-lg transition-colors"
+              >
+                Order Wings Online
+              </a>
+              <p className="text-xs mt-3 opacity-75">
+                Note: Order 6 or 12 through Toast. $1 pricing applies on Wednesdays.
+              </p>
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 leading-tight">
-              It’s Wacky Wing<br className="hidden md:block" /> Wednesday!
-            </h2>
-            <p className="text-xl md:text-2xl font-semibold text-yellow-300 mb-4">
-              CHICKEN WINGS — $1 a wing!
-            </p>
-            <p className="text-lg mb-2">
-              Secret Hot Wing recipe straight from Buffalo, NY
-            </p>
-            <p className="text-base mb-4 text-yellow-100">
-              Plus BBQ, Old Bay, Garlic Parm & Hot Honey Sriracha
-            </p>
-            <div className="bg-yellow-400 text-red-900 font-bold text-lg px-4 py-2 rounded-full inline-block mb-4">
-              $1 a wing!
+            <div className="relative aspect-[3/4] max-w-xs mx-auto md:max-w-sm">
+              <img
+                src="/wacky-wing-wednesday.jpg"
+                alt="Wacky Wing Wednesday special — $1 chicken wings"
+                className="w-full h-full object-contain drop-shadow-2xl"
+              />
             </div>
-            <p className="text-sm mb-6 opacity-90">
-              Minimum order of 6 · Limit 12 wings per person<br />
-              Great wings, a great price, and an even greater mission.
-            </p>
-            <a
-              href="https://order.toasttab.com/online/kalhert-cafe-53-loveton-circle"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-yellow-400 hover:bg-yellow-300 text-red-900 font-bold px-8 py-3 rounded-full text-lg transition-colors"
-            >
-              Order Wings Online
-            </a>
-            <p className="text-xs mt-3 opacity-75">
-              Note: Order 6 or 12 through Toast. $1 pricing applies on Wednesdays.
-            </p>
-          </div>
-          <div className="relative aspect-[3/4] max-w-xs mx-auto md:max-w-sm">
-            <img
-              src="/wacky-wing-wednesday.jpg"
-              alt="Wacky Wing Wednesday special — $1 chicken wings"
-              className="w-full h-full object-contain drop-shadow-2xl"
-            />
           </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }
