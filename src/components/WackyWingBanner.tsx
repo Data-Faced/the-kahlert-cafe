@@ -35,7 +35,7 @@ export default function WackyWingBanner({
       <div className="bg-red-700 text-white py-3 px-4 text-center">
         <div className="container mx-auto">
           <span className="inline-block bg-yellow-400 text-red-900 text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-full mr-2">
-            {isWednesday ? "Today Only!" : "Coming Wednesday"}
+            {isWednesday ? "Wednesdays Only" : "Coming Wednesday"}
           </span>
           <span className="font-semibold">
             {isWednesday
@@ -63,7 +63,7 @@ export default function WackyWingBanner({
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div className="text-center md:text-left">
             <div className="inline-block bg-yellow-400 text-red-900 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-4">
-              Today Only!
+              Wednesdays Only
             </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 leading-tight">
               It’s Wacky Wing<br className="hidden md:block" /> Wednesday!
