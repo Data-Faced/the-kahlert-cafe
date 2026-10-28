@@ -5,6 +5,7 @@ import VideoThumbnail from "@/components/VideoThumbnail";
 import LocalBusinessSchema from "@/components/LocalBusinessSchema";
 import FadeOnScroll from "@/components/FadeOnScroll";
 import MobileNav from "@/components/MobileNav";
+import WackyWingBanner from "@/components/WackyWingBanner";
 
 export const metadata: Metadata = {
   title: "The Kahlert Café | Inclusive Farm-to-Able Café in Sparks, MD",
@@ -62,6 +63,9 @@ export default function Home() {
             </div>
           </div>
         </header>
+
+        {/* Wacky Wing Wednesday — full banner only on Wednesdays */}
+        <WackyWingBanner variant="full" />
 
         {/* Hero */}
         <section className="relative min-h-[80vh] flex items-center text-white">
