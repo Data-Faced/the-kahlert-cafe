@@ -3,16 +3,32 @@
 import { useState } from "react";
 import Image from "next/image";
 
-export default function VideoThumbnail() {
+interface VideoThumbnailProps {
+  videoId: string;
+  title: string;
+  thumbnailSrc: string;
+  alt: string;
+  ariaLabel: string;
+  className?: string;
+}
+
+export default function VideoThumbnail({
+  videoId,
+  title,
+  thumbnailSrc,
+  alt,
+  ariaLabel,
+  className = "relative max-w-4xl mx-auto mb-8 aspect-video block w-full group focus:outline-none",
+}: VideoThumbnailProps) {
   const [isPlaying, setIsPlaying] = useState(false);
 
   if (isPlaying) {
     return (
-      <div className="relative max-w-4xl mx-auto mb-8 aspect-video">
+      <div className={`relative aspect-video ${className.includes("max-w") ? "" : "max-w-4xl mx-auto mb-8"}`}>
         <iframe
           className="absolute inset-0 w-full h-full"
-          src="https://www.youtube.com/embed/6xeW8So7ya8?autoplay=1"
-          title="Kahlert Café Ribbon Cutting Celebration"
+          src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
+          title={title}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         />
@@ -24,15 +40,15 @@ export default function VideoThumbnail() {
     <button
       type="button"
       onClick={() => setIsPlaying(true)}
-      className="relative max-w-4xl mx-auto mb-8 aspect-video block w-full group focus:outline-none"
-      aria-label="Play ribbon cutting video"
+      className={className}
+      aria-label={ariaLabel}
     >
       <Image
-        src="/tkc-home-video-thumb.jpeg"
-        alt="Kahlert Café ribbon cutting celebration"
+        src={thumbnailSrc}
+        alt={alt}
         fill
         className="object-cover"
-        priority
+        priority={false}
       />
       {/* Play button overlay */}
       <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
