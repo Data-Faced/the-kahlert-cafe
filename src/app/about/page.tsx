@@ -3,6 +3,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import MobileNav from "@/components/MobileNav";
 import FadeOnScroll from "@/components/FadeOnScroll";
+import VideoThumbnail from "@/components/VideoThumbnail";
 
 export const metadata: Metadata = {
   title: "About",
@@ -89,7 +90,18 @@ export default function AboutPage() {
         <FadeOnScroll>
           <div className="container mx-auto px-6 max-w-5xl">
             <div className="w-16 h-0.5 bg-[#0F6397] mx-auto mb-6" />
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0F6397] text-center mb-16">Meet Our Team</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0F6397] text-center mb-8">Meet Our Team</h2>
+            <p className="text-center text-stone-700 text-lg mb-10 max-w-2xl mx-auto">Watch our welcome video to hear from the team and learn more about the mission behind The Kahlert Café.</p>
+            <div className="mb-16 max-w-4xl mx-auto">
+              <VideoThumbnail
+                videoId="t0wHYjO2EnQ"
+                title="Welcome to The Kahlert Cafe'"
+                thumbnailSrc="https://img.youtube.com/vi/t0wHYjO2EnQ/hqdefault.jpg"
+                alt="Welcome to The Kahlert Cafe video thumbnail"
+                ariaLabel="Play welcome to the cafe video"
+                className="relative aspect-video block w-full group focus:outline-none"
+              />
+            </div>
 
             {/* Barbara */}
             <div className="grid md:grid-cols-2 gap-10 items-center mb-20">
