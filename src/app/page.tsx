@@ -112,11 +112,35 @@ export default function Home() {
               <div className="w-16 h-0.5 bg-[#0F6397] mx-auto mb-6" />
               <h2 className="text-3xl md:text-4xl font-bold text-[#0F6397] mb-3">Inclusive Café Now Open in Sparks, MD</h2>
               <p className="text-lg text-stone-700 mb-8">Watch the Kahlert’s Café’s Exciting Ribbon Cutting Celebration</p>
-              <VideoThumbnail />
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <VideoThumbnail
+                videoId="6xeW8So7ya8"
+                title="Kahlert Café Ribbon Cutting Celebration"
+                thumbnailSrc="/tkc-home-video-thumb.jpeg"
+                alt="Kahlert Café ribbon cutting celebration"
+                ariaLabel="Play ribbon cutting video"
+              />
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mt-4">
                 <a href="https://order.toasttab.com/online/kalhert-cafe-53-loveton-circle" target="_blank" rel="noopener noreferrer" className="bg-white text-[#0F6397] border border-[#0F6397] px-8 py-3 font-semibold hover:bg-blue-50">ORDER ONLINE</a>
                 <Link href="/about" className="border-2 border-stone-400 text-stone-700 px-8 py-3 font-semibold hover:bg-stone-100">ABOUT US</Link>
               </div>
+            </div>
+          </FadeOnScroll>
+        </section>
+
+        {/* Meet the Team Video */}
+        <section className="py-16 bg-white text-center">
+          <FadeOnScroll>
+            <div className="container mx-auto px-4">
+              <div className="w-16 h-0.5 bg-[#0F6397] mx-auto mb-6" />
+              <h2 className="text-3xl md:text-4xl font-bold text-[#0F6397] mb-3">Where Coffee Meets Inclusion</h2>
+              <p className="text-lg text-stone-700 mb-8">Meet the team and learn more about our mission</p>
+              <VideoThumbnail
+                videoId="t0wHYjO2EnQ"
+                title="Welcome to The Kahlert Cafe'"
+                thumbnailSrc="https://img.youtube.com/vi/t0wHYjO2EnQ/hqdefault.jpg"
+                alt="Welcome to The Kahlert Cafe video thumbnail"
+                ariaLabel="Play welcome to the cafe video"
+              />
             </div>
           </FadeOnScroll>
         </section>
