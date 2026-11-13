@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 const teamMembers = [
   { name: "Anthony", img: "/Anthony%20(1).JPG" },
-  { name: "Cameron", img: "/Cameron%20(1).JPG" },
+  { name: "Campbell", img: "/Cameron%20(1).JPG" },
   { name: "Carina", img: "/Carina%20(1).JPG" },
   { name: "Donna", img: "/Donna%20(1).JPG" },
   { name: "Emily", img: "/Emily%20(1).JPG" },
