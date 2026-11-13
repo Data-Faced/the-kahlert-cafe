@@ -43,14 +43,16 @@ export default function WackyWingBanner({
               ? "It’s Wacky Wing Wednesday! $1 wings (min 6, limit 12)"
               : "Wacky Wing Wednesday every Wednesday — $1 wings"}
           </span>
-          <a
-            href="https://order.toasttab.com/online/kalhert-cafe-53-loveton-circle"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="ml-3 underline hover:text-yellow-300 text-sm"
-          >
-            Order now
-          </a>
+          {isWednesday && (
+            <a
+              href="https://order.toasttab.com/online/kalhert-cafe-53-loveton-circle"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-3 underline hover:text-yellow-300 text-sm"
+            >
+              Order now
+            </a>
+          )}
         </div>
       </div>
     );
